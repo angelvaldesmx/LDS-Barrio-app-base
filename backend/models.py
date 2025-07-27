@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
@@ -9,6 +10,12 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     barrio_code = db.Column(db.String(20), nullable=False)
     role = db.Column(db.String(20), default='member')  # member, leader, admin
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,8 +37,8 @@ class Certificate(db.Model):
     member_id = db.Column(db.Integer, db.ForeignKey('member.id'), nullable=False)
     certificate_type = db.Column(db.String(50))
     issue_date = db.Column(db.DateTime, default=datetime.utcnow)
-    issued_by = db.Column(db.String(50))  # Quién emitió el certificado
-    file_path = db.Column(db.String(200))  # Ruta archivo pdf generado
+    issued_by = db.Column(db.String(50))
+    file_path = db.Column(db.String(200))
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
