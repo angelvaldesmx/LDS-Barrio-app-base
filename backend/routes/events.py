@@ -5,17 +5,19 @@ from datetime import datetime
 
 @events_bp.route('/', methods=['GET'])
 def get_events():
-    # Devuelve eventos futuros
     now = datetime.utcnow()
     events = Event.query.filter(Event.start_datetime >= now).order_by(Event.start_datetime.asc()).all()
-    return jsonify([{
-        'id': e.id,
-        'title': e.title,
-        'description': e.description,
-        'start_datetime': e.start_datetime.isoformat(),
-        'end_datetime': e.end_datetime.isoformat() if e.end_datetime else None,
-        'location': e.location
-    } for e in events])
+    data = []
+    for e in events:
+        data.append({
+            'id': e.id,
+            'title': e.title,
+            'description': e.description,
+            'start_datetime': e.start_datetime.isoformat() if e.start_datetime else None,
+            'end_datetime': e.end_datetime.isoformat() if e.end_datetime else None,
+            'location': e.location
+        })
+    return jsonify(data)
 
 @events_bp.route('/add', methods=['POST'])
 def add_event():
