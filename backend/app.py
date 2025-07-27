@@ -1,9 +1,18 @@
 from flask import Flask
-from routes.main import main_bp
+from flask_cors import CORS
+from routes import register_blueprints
+from models import db
+from config import Config
 
-app = Flask(__name__)
-app.config.from_object("config.Config")
-app.register_blueprint(main_bp)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    db.init_app(app)
+    CORS(app)
+    register_blueprints(app)
+    return app
 
-if __name__ == "__main__":
-    app.run(debug=True)
+app = create_app()
+
+if __name__ == '__main__':
+    app.run()
