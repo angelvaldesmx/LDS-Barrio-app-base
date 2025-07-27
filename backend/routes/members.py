@@ -30,3 +30,18 @@ def add_member():
     db.session.add(member)
     db.session.commit()
     return jsonify({'message': 'Miembro agregado correctamente'})
+    from flask import request, jsonify, abort
+from models import Member, db, User
+
+def check_admin():
+    # ejemplo: recibir user_id desde request (simplificado)
+    user_id = request.headers.get('user_id')
+    user = User.query.get(user_id)
+    if not user or user.role != 'admin':
+        abort(403, 'Acceso denegado')
+
+@members_bp.route('/add', methods=['POST'])
+def add_member():
+    check_admin()
+    data = request.json
+    # resto igual...
