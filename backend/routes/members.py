@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import request, jsonify
 from models import Member, db
 from . import members_bp
 
@@ -6,9 +6,18 @@ from . import members_bp
 def get_members():
     barrio_code = request.args.get('barrio_code')
     if not barrio_code:
-        return jsonify({'error': 'Se requiere código de barrio'}), 400
+        return jsonify({'error': 'Código de barrio requerido'}), 400
+
     members = Member.query.filter_by(barrio_code=barrio_code).all()
-    return jsonify([{'id': m.id, 'full_name': m.full_name, 'date_of_birth': m.date_of_birth.isoformat()} for m in members])
+    data = []
+    for m in members:
+        data.append({
+            'id': m.id,
+            'full_name': m.full_name,
+            'date_of_birth': m.date_of_birth.isoformat() if m.date_of_birth else None,
+            'member_since': m.member_since.isoformat() if m.member_since else None
+        })
+    return jsonify(data)
 
 @members_bp.route('/add', methods=['POST'])
 def add_member():
