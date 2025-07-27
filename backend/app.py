@@ -1,17 +1,16 @@
 from flask import Flask
 from flask_cors import CORS
-from routes import auth_bp, members_bp, records_bp, certificates_bp, events_bp, library_bp
 from config import Config
 from models import db
+from routes import auth_bp, members_bp, records_bp, certificates_bp, events_bp, library_bp
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
+
     db.init_app(app)
     CORS(app)
 
-    # Registrar blueprints
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(members_bp, url_prefix='/members')
     app.register_blueprint(records_bp, url_prefix='/records')
@@ -21,7 +20,7 @@ def create_app():
 
     @app.route('/')
     def index():
-        return {"message": "Bienvenido al API LDS Barrio"}
+        return {"message": "API LDS Barrio activa"}
 
     return app
 
