@@ -7,14 +7,19 @@ from datetime import datetime
 def get_records():
     member_id = request.args.get('member_id')
     if not member_id:
-        return jsonify({'error': 'Se requiere ID de miembro'}), 400
+        return jsonify({'error': 'member_id requerido'}), 400
+
     records = Record.query.filter_by(member_id=member_id).all()
-    return jsonify([{
-        'id': r.id,
-        'record_type': r.record_type,
-        'date': r.date.isoformat() if r.date else None,
-        'details': r.details
-    } for r in records])
+    data = []
+    for r in records:
+        data.append({
+            'id': r.id,
+            'record_type': r.record_type,
+            'date': r.date.isoformat() if r.date else None,
+            'details': r.details,
+            'uploaded_at': r.uploaded_at.isoformat() if r.uploaded_at else None
+        })
+    return jsonify(data)
 
 @records_bp.route('/add', methods=['POST'])
 def add_record():
@@ -23,7 +28,6 @@ def add_record():
         date = datetime.fromisoformat(data.get('date')) if data.get('date') else None
     except:
         date = None
-
     record = Record(
         member_id=data.get('member_id'),
         record_type=data.get('record_type'),
