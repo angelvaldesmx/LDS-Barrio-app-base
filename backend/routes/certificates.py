@@ -20,3 +20,18 @@ def issue_certificate():
     db.session.add(certificate)
     db.session.commit()
     return jsonify({'message': 'Certificado emitido correctamente'})
+
+@certificates_bp.route('/validate/<int:cert_id>', methods=['GET'])
+def validate_certificate(cert_id):
+    cert = Certificate.query.get(cert_id)
+    if not cert:
+        return jsonify({'error': 'Certificado no encontrado'}), 404
+
+    return jsonify({
+        'id': cert.id,
+        'member_id': cert.member_id,
+        'certificate_type': cert.certificate_type,
+        'issue_date': cert.issue_date.isoformat(),
+        'issued_by': cert.issued_by,
+        'file_path': cert.file_path
+    })
