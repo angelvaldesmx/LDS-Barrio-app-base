@@ -21,4 +21,5 @@ export default function Intro({ onFinish }) {
       <img src={logo} alt="Logo LDS" className="logo-intro" />
     </div>
   );
-}
+};
+export default Intro;
