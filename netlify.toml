@@ -1,6 +1,5 @@
 [build]
-  publish = "public"       # Carpeta donde Netlify sirve los archivos estáticos (ajústalo si usas otra)
-  command = "npm run build"  # Comando para construir tu frontend (ajústalo según tu setup)
+  publish = "public"
 
 [[redirects]]
   from = "/*"
@@ -8,10 +7,4 @@
   status = 200
 
 [functions]
-  directory = "netlify/functions"  # Carpeta con funciones serverless (ajústalo si usas otra)
-
-# Opcional: configuraciones de headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "max-age=0, no-cache, no-store, must-revalidate"
+  directory = "netlify/functions"
