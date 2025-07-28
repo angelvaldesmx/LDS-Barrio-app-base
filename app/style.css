@@ -1,0 +1,58 @@
+/* style.css - estilos globales */
+:root {
+  --primary-color: #005aa7;
+  --secondary-color: #fffde7;
+  --accent-color: #00c6ff;
+  --background: #f7f9fc;
+  --text-color: #333;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --glass-blur: blur(10px);
+  --font-family: 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: var(--primary-color);
+  color: white;
+}
