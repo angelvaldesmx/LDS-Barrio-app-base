@@ -1,6 +1,4 @@
-// global.js
-
-// Función para manejar foco visible accesible para teclado
+// Accesibilidad al usar tabulador
 (function () {
   function handleFirstTab(e) {
     if (e.key === 'Tab') {
