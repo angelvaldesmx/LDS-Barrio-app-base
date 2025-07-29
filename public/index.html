@@ -1,63 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Archivo histórico del barrio y genealogía - LDS Barrio App" />
-    <meta name="keywords" content="genealogía, barrio, LDS, historia, registros familiares" />
-    <meta name="author" content="Tu nombre o entidad" />
-    <title>Archivo Histórico del Barrio</title>
-    <link rel="stylesheet" href="/styles/global.css" />
-    <link rel="stylesheet" href="/styles/index.css" />
-    <script defer src="/scripts/index.js"></script>
-  </head>
-  <body>
-    <!-- Intro animada (se puede modularizar también)-->
-    <div id="intro-overlay" class="intro">
-      <div class="intro-content">
-        <h1>Bienvenido</h1>
-        <p>Descubre la historia viva de nuestro barrio</p>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Archivo histórico del barrio y genealogía - LDS Barrio App" />
+  <meta name="keywords" content="genealogía, barrio, LDS, historia, registros familiares" />
+  <meta name="author" content="Tu nombre o entidad" />
+  <title>Archivo Histórico del Barrio</title>
+
+  <!-- Ícono favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <!-- Íconos PWA y apple-touch -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#0a3d62" />
+
+  <!-- Estilos global y particulares -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/index.css" />
+
+  <!-- Scripts con defer para carga asíncrona post DOM -->
+  <script defer src="js/global.js"></script>
+  <script defer src="js/index.js"></script>
+</head>
+<body>
+
+  <!-- Intro animada (overlay) -->
+  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-describedby="intro-desc">
+    <div class="intro-content">
+      <h1 id="intro-title" tabindex="0">Bienvenido</h1>
+      <p id="intro-desc">Descubre la historia viva de nuestro barrio</p>
     </div>
+  </div>
 
-    <!-- Contenedor Principal -->
-    <main class="main-content">
-      <h2 class="section-title">Explora nuestras secciones</h2>
+  <!-- Contenedor Principal -->
+  <main class="main-content" role="main">
+    <h2 class="section-title">Explora nuestras secciones</h2>
 
-      <!-- Tarjetas en grid o carrusel -->
-      <div class="card-container">
-        <div class="card">
-          <img src="/assets/images/familias.jpg" alt="Familias" />
-          <div class="card-info">
-            <h3>Registro de Familias</h3>
-            <button onclick="window.location.href='familias.html'">Entrar</button>
-          </div>
+    <div class="card-container" role="list" aria-label="Secciones principales">
+
+      <article class="card" role="listitem" tabindex="0" aria-labelledby="card-title-login">
+        <img src="assets/login.jpg" alt="Acceso a la cuenta" loading="lazy" />
+        <div class="card-info">
+          <h3 id="card-title-login">Acceder</h3>
+          <button type="button" aria-describedby="card-title-login" onclick="window.location.href='pages/login.html'">Entrar</button>
         </div>
+      </article>
 
-        <div class="card">
-          <img src="/assets/images/miembros.jpg" alt="Miembros" />
-          <div class="card-info">
-            <h3>Miembros Históricos</h3>
-            <button onclick="window.location.href='miembros.html'">Entrar</button>
-          </div>
+      <article class="card" role="listitem" tabindex="0" aria-labelledby="card-title-dashboard">
+        <img src="assets/dashboard.jpg" alt="Panel de usuario" loading="lazy" />
+        <div class="card-info">
+          <h3 id="card-title-dashboard">Dashboard</h3>
+          <button type="button" aria-describedby="card-title-dashboard" onclick="window.location.href='pages/dashboard.html'">Entrar</button>
         </div>
+      </article>
 
-        <div class="card">
-          <img src="/assets/images/actividades.jpg" alt="Actividades" />
-          <div class="card-info">
-            <h3>Actividades Pasadas</h3>
-            <button onclick="window.location.href='actividades.html'">Entrar</button>
-          </div>
+      <article class="card" role="listitem" tabindex="0" aria-labelledby="card-title-registros">
+        <img src="assets/registros.jpg" alt="Registros históricos" loading="lazy" />
+        <div class="card-info">
+          <h3 id="card-title-registros">Registros Históricos</h3>
+          <button type="button" aria-describedby="card-title-registros" onclick="window.location.href='pages/registros.html'">Entrar</button>
         </div>
+      </article>
 
-        <div class="card">
-          <img src="/assets/images/login.jpg" alt="Login" />
-          <div class="card-info">
-            <h3>Acceder</h3>
-            <button onclick="window.location.href='login.html'">Entrar</button>
-          </div>
+      <article class="card" role="listitem" tabindex="0" aria-labelledby="card-title-biblioteca">
+        <img src="assets/biblioteca.jpg" alt="Biblioteca digital" loading="lazy" />
+        <div class="card-info">
+          <h3 id="card-title-biblioteca">Biblioteca</h3>
+          <button type="button" aria-describedby="card-title-biblioteca" onclick="window.location.href='pages/biblioteca.html'">Entrar</button>
         </div>
-      </div>
-    </main>
-  </body>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-labelledby="card-title-eventos">
+        <img src="assets/eventos.jpg" alt="Eventos del barrio" loading="lazy" />
+        <div class="card-info">
+          <h3 id="card-title-eventos">Eventos</h3>
+          <button type="button" aria-describedby="card-title-eventos" onclick="window.location.href='pages/eventos.html'">Entrar</button>
+        </div>
+      </article>
+
+      <article class="card" role="listitem" tabindex="0" aria-labelledby="card-title-configuracion">
+        <img src="assets/configuracion.jpg" alt="Configuración de cuenta" loading="lazy" />
+        <div class="card-info">
+          <h3 id="card-title-configuracion">Configuración</h3>
+          <button type="button" aria-describedby="card-title-configuracion" onclick="window.location.href='pages/configuracion.html'">Entrar</button>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Sugerencia: Añadir footer si luego decides (opcional) -->
+
+</body>
 </html>
