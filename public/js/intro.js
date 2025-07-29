@@ -1,3 +1,5 @@
+import { includeComponent } from './utils.js';
+
 export function handleIntroAnimation() {
   const lastVisit = localStorage.getItem('lastIntro');
   const now = Date.now();
