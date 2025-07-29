@@ -1,13 +1,25 @@
-// index.js
+import { handleIntroAnimation } from './intro.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-  const introOverlay = document.getElementById('intro-overlay');
+  // Ejecutar animación de intro si aplica
+  handleIntroAnimation();
 
-  function hideIntro() {
-    introOverlay.classList.add('hidden');
-  }
+  // Delegar el clic y timeout solo si el overlay ya fue cargado
+  const observer = new MutationObserver(() => {
+    const introOverlay = document.getElementById('intro-overlay');
+    if (introOverlay) {
+      function hideIntro() {
+        introOverlay.classList.add('hidden');
+      }
 
-  introOverlay.addEventListener('click', hideIntro);
-  setTimeout(hideIntro, 3000);
+      introOverlay.addEventListener('click', hideIntro);
+      setTimeout(hideIntro, 7000);
+      observer.disconnect(); // Ya no es necesario seguir observando
+    }
+  });
+
+  // Esperar a que se inyecte el overlay dinámicamente
+  observer.observe(document.body, { childList: true, subtree: true });
 });
 
 // Registro del Service Worker
