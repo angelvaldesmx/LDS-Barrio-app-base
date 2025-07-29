@@ -1,0 +1,1 @@
+church-of-jesus-christ-api @ git+https://github.com/churchofjesuschrist/church-api.git
