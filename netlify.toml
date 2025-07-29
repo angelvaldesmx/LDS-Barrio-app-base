@@ -4,18 +4,3 @@
 
 [functions]
   directory = "netlify/functions"
-
-[[redirects]]
-  from = "/login"
-  to = "/pages/login.html"
-  status = 200
-
-[[redirects]]
-  from = "/registros-historicos"
-  to = "/pages/registros_historicos.html"
-  status = 200
-
-[[redirects]]
-  from = "/certificados"
-  to = "/pages/certificados.html"
-  status = 200
