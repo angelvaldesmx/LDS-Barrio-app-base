@@ -5,7 +5,7 @@ export function handleIntroAnimation() {
   const now = Date.now();
 
   if (!lastVisit || now - parseInt(lastVisit) > 86400000) {
-includeComponent('intro', 'components/intro.html');
+    includeComponent('intro', 'components/intro.html');
     localStorage.setItem('lastIntro', now.toString());
   }
 }
