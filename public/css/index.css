@@ -1,4 +1,6 @@
-/* Intro overlay */
+/* Intro overlay - esto es diferente de intro-container, si usas intro-container para la intro,
+   este bloque intro-overlay sería para otro tipo de overlay, no mezcles. Si no usas intro-overlay, puedes eliminarlo */
+
 .intro-overlay {
   position: fixed;
   inset: 0;
