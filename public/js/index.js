@@ -1,4 +1,5 @@
 import { handleIntroAnimation } from './intro.js';
+import './global.js'; // Se importa globalmente para activarlo
 
 document.addEventListener('DOMContentLoaded', () => {
   // Ejecutar animación de intro si aplica
@@ -14,11 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       introOverlay.addEventListener('click', hideIntro);
       setTimeout(hideIntro, 7000);
-      observer.disconnect(); // Ya no es necesario seguir observando
+      observer.disconnect();
     }
   });
 
-  // Esperar a que se inyecte el overlay dinámicamente
   observer.observe(document.body, { childList: true, subtree: true });
 });
 
