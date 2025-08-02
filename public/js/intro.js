@@ -1,7 +1,7 @@
 import { includeComponent } from './utils.js';
 
 export function handleIntroAnimation() {
-  includeComponent('intro', 'components/intro.html').then(() => {
+  includeComponent('intro', '../components/intro.html').then(() => {
     const introContainer = document.getElementById("introContainer");
     const mainContent = document.getElementById("mainContent");
     const svgObject = document.getElementById("svgIntro");
