@@ -1,4 +1,3 @@
-// Accesibilidad al usar tabulador
 (function () {
   function handleFirstTab(e) {
     if (e.key === 'Tab') {
