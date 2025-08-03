@@ -1,4 +1,4 @@
-const CACHE_NAME = 'barrio-cache-v1';
+const CACHE_NAME = 'barrio-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
